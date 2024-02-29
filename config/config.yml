@@ -1,0 +1,3 @@
+rpc_url: "https://rpc-sepolia.rockx.com" # 例如 "https://mainnet.infura.io/v3/YOUR_PROJECT_ID"
+private_key: "YOUR_PRIVATE_KEY" # 钱包私钥
+contract_address: "0xeFdaFC2d7a51A1F273FCa25edFe75E0d9A9b74D2"
