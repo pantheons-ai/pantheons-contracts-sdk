@@ -5,10 +5,47 @@
           "internalType": "string",
           "name": "uri_",
           "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "spg_",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "registry_",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "policyId_",
+          "type": "uint256"
         }
       ],
       "stateMutability": "nonpayable",
       "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableInvalidOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableUnauthorizedAccount",
+      "type": "error"
     },
     {
       "anonymous": false,
@@ -16,13 +53,25 @@
         {
           "indexed": true,
           "internalType": "uint256",
-          "name": "id",
+          "name": "erc404Id",
           "type": "uint256"
         },
         {
           "indexed": true,
           "internalType": "address",
           "name": "contractAddress",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "ipId",
           "type": "address"
         }
       ],
@@ -79,6 +128,32 @@
       ],
       "name": "WhitelistChanged",
       "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "NFT_ADDRESS",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "POLICY_ID",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
     },
     {
       "inputs": [
@@ -138,12 +213,12 @@
         },
         {
           "internalType": "string",
-          "name": "symbol_",
+          "name": "erc404Symbol_",
           "type": "string"
         },
         {
           "internalType": "uint8",
-          "name": "decimals_",
+          "name": "erc404Decimals_",
           "type": "uint8"
         },
         {
@@ -155,6 +230,56 @@
           "internalType": "address",
           "name": "initialMintRecipient_",
           "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "nftDescription",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "nftUrl",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "nftImage",
+          "type": "string"
+        },
+        {
+          "internalType": "string[]",
+          "name": "nftAttributeKeys",
+          "type": "string[]"
+        },
+        {
+          "internalType": "string[]",
+          "name": "nftAttributeValues",
+          "type": "string[]"
+        },
+        {
+          "internalType": "string",
+          "name": "ipName_",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "ipHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "string",
+          "name": "ipUrl",
+          "type": "string"
+        },
+        {
+          "internalType": "string[]",
+          "name": "ipAttributeKeys",
+          "type": "string[]"
+        },
+        {
+          "internalType": "string[]",
+          "name": "ipAttributeValues",
+          "type": "string[]"
         }
       ],
       "name": "createERC404",
@@ -245,6 +370,30 @@
     {
       "inputs": [
         {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "isValidSignature",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "address",
           "name": "account_",
           "type": "address"
@@ -259,6 +408,118 @@
         }
       ],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "onERC1155BatchReceived",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "onERC1155Received",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        }
+      ],
+      "name": "onERC721Received",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "pure",
       "type": "function"
     },
     {
@@ -292,6 +553,38 @@
       "name": "renounceOwnership",
       "outputs": [],
       "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "spg",
+      "outputs": [
+        {
+          "internalType": "contract IStoryProtocolGateway",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "pure",
       "type": "function"
     },
     {
